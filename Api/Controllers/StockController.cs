@@ -36,4 +36,9 @@ public class StockController : ControllerBase
 
         return Ok(stock);
     }
+
+    [HttpPost]
+    public async Task<IActionResult> Create([FromBody] CreateStockRequest stockDto) {
+        
+    }
 }
