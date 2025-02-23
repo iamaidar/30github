@@ -38,7 +38,10 @@ public class StockController : ControllerBase
     }
 
     [HttpPost]
-    public async Task<IActionResult> Create([FromBody] CreateStockRequest stockDto) {
-        
+    public async Task<IActionResult> Create([FromBody] CreateStockRequestDto stockDto) {
+        var stockModel = stockDto.ToStockFromCreateDto();
+        await _context.Stocks.Add(stockModel);
+        await _context.SaveChangesAsync();
+        return CreatedAtAction(nameof(GetById), new {id = stockModel.Id}, stockModel.ToStockDto());
     }
 }
