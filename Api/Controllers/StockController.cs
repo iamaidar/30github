@@ -2,6 +2,8 @@ using Api.Data;
 using Api.Mappers;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Api.Dtos.Stock;
+using Api.Models;
 
 namespace Api.Controllers;
 
@@ -39,8 +41,8 @@ public class StockController : ControllerBase
 
     [HttpPost]
     public async Task<IActionResult> Create([FromBody] CreateStockRequestDto stockDto) {
-        var stockModel = stockDto.ToStockFromCreateDto();
-        await _context.Stocks.Add(stockModel);
+        Stock stockModel = stockDto.ToStockFromCreateDto();
+        await _context.Stocks.AddAsync(stockModel);
         await _context.SaveChangesAsync();
         return CreatedAtAction(nameof(GetById), new {id = stockModel.Id}, stockModel.ToStockDto());
     }

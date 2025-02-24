@@ -1,4 +1,3 @@
-using Api.Dtos;
 using Api.Dtos.Stock;
 using Api.Models;
 
@@ -14,6 +13,16 @@ public static class StockMapper
             Purchase = stockModel.Purchase,
             LastDiv = stockModel.LastDiv,
             MarketCap = stockModel.MarketCap
+        };
+    }
+
+    public static Stock ToStockFromCreateDto(this CreateStockRequestDto model) {
+        return new Stock {
+            Symbol = model.Symbol,
+            CompanyName = model.CompanyName,
+            Purchase = model.Purchase,
+            LastDiv = model.LastDiv,
+            MarketCap = model.MarketCap
         };
     }
 }

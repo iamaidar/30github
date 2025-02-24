@@ -24,3 +24,5 @@ riderModule.iml
 # Visual Studio
 
 .vs/
+
+.vscode/
