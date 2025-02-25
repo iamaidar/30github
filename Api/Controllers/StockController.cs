@@ -46,4 +46,9 @@ public class StockController : ControllerBase
         await _context.SaveChangesAsync();
         return CreatedAtAction(nameof(GetById), new {id = stockModel.Id}, stockModel.ToStockDto());
     }
+
+    [HttpPut]
+    public async Task<IActionResult> Update() {
+
+    }
 }
