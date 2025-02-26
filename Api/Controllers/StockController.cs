@@ -48,7 +48,9 @@ public class StockController : ControllerBase
     }
 
     [HttpPut]
-    public async Task<IActionResult> Update() {
-
+    [Route("{id}")]
+    public async Task<IActionResult> Update([FromRoute] int id, [FromBody] UpdateStockRequestDto dto) {
+        
+        return Ok();
     }
 }
