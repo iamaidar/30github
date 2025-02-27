@@ -51,6 +51,6 @@ public class StockController : ControllerBase
     [Route("{id}")]
     public async Task<IActionResult> Update([FromRoute] int id, [FromBody] UpdateStockRequestDto dto) {
         
-        return Ok();
+        return Ok('test');
     }
 }
