@@ -50,7 +50,6 @@ public class StockController : ControllerBase
     [HttpPut]
     [Route("{id}")]
     public async Task<IActionResult> Update([FromRoute] int id, [FromBody] UpdateStockRequestDto dto) {
-        Console.WriteLine("", id);
         return Ok("test");
     }
 }
