@@ -29,14 +29,14 @@ public class StockController : ControllerBase
     [HttpGet("{id}")]
     public async Task<IActionResult> GetById([FromRoute] int id)
     {
-        var stock = (await _context.Stocks.FindAsync(id)).ToStockDto();
+        var stock = await _context.Stocks.FindAsync(id);
 
         if (stock == null)
         {
             return NotFound();
         }
 
-        return Ok(stock);
+        return Ok(stock.ToStockDto());
     }
 
     [HttpPost]
@@ -59,18 +59,6 @@ public class StockController : ControllerBase
             return NotFound();
         }
 
-        //         public string Symbol { get; set; } = string.Empty;
-
-        // public string CompanyName { get; set; } = string.Empty;
-
-        // public decimal Purchase { get; set; }
-
-        // public decimal LastDiv { get; set; }
-
-        // public string Industry { get; set; } = string.Empty;
-
-        // public long MarketCap { get; set; }
-
         stockModel.Symbol = dto.Symbol;
         stockModel.CompanyName = dto.CompanyName;
         stockModel.Purchase = dto.Purchase;
@@ -81,5 +69,22 @@ public class StockController : ControllerBase
         await _context.SaveChangesAsync();
 
         return Ok(stockModel.ToStockDto());
+    }
+
+    [HttpDelete]
+    [Route("{id}")]
+    public async Task<IActionResult> Delete([FromRoute] int id)
+    {
+        var stock = await _context.Stocks.FirstOrDefaultAsync(s => s.Id == id);
+
+        if (stock == null)
+        {
+            return NotFound();
+        }
+
+        _context.Stocks.Remove(stock);
+        await _context.SaveChangesAsync();
+
+        return NoContent();
     }
 }
