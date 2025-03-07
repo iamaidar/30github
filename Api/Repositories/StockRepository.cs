@@ -1,4 +1,5 @@
 using Api.Data;
+using Api.Dtos.Stock;
 using Api.Interfaces;
 using Api.Models;
 using Microsoft.EntityFrameworkCore;
@@ -14,9 +15,29 @@ namespace Api.Repositories
             _context = context;
         }
 
+        public Task<Stock> CreateAsync(Stock stockModel)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<Stock?> DeleteAsync(int id)
+        {
+            throw new NotImplementedException();
+        }
+
         public async Task<List<Stock>> GetAllAsync()
         {
             return await _context.Stocks.ToListAsync();
+        }
+
+        public Task<Stock?> GetByIdAsync(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<Stock?> UpdateAsync(int id, UpdateStockRequestDto dto)
+        {
+            throw new NotImplementedException();
         }
     }
 }
