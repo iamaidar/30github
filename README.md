@@ -1,1 +1,1 @@
-Added README file
+Finshark - Financial Tracker
